@@ -6,13 +6,13 @@ This repository implements exact and approximation algorithms for solving the Sp
 Given:
 - A graph \( G = (V, E) \)
 - Costs \( c_e \) on edges
-- Demands \( d_i \) on vertex pairs \((s_i, t_i)\)
+- Demands \( d_i \) on k vertex pairs \((s_i, t_i)\)
 ## Features
 - **Exact Solution**: Solves the problem using a Mixed Integer Non-Linear Program (MINLP) Solver SCIP.
 - **Approximation Algorithm**:
   - LP Relaxation with polynomial constraints.
   - Frechet Embeddings for generating candidate sets.
-  - \( O(\log k) \)-approximation with provable bounds.
+  - \( O(log k) \)-approximation with provable bounds.
 - **Visualization**: Plots comparing sparsity ratio and runtime for various graph sizes.
 
 ## Usage
