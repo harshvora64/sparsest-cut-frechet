@@ -1,0 +1,713 @@
+\documentclass{beamer}
+\hypersetup{pdfpagemode=FullScreen} %full screen mode
+\setbeamertemplate{navigation symbols}{}
+\usepackage[english]{babel} %designed for typesetting lebels(addr lebel,sticky lebels,etc)
+\usepackage[latin1]{inputenc} %Accept different input encodings
+\usepackage{amsmath,amssymb} 
+\usepackage[T1]{fontenc} %for font encoding
+\usepackage{times} % use times font instead of default
+\usepackage{curves} %for drawing curves
+\usepackage{verbatim} %paragraph making environment 
+\usepackage{multimedia} %for multimedia like animation,movie etc...
+\usepackage{mathptmx} % font style
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{dirtytalk}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{amsmath}
+\captionsetup[figure]{labelformat=empty}
+\graphicspath{ {images/} }
+
+\usepackage{algorithm,algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\usepackage{lipsum}
+\setbeamertemplate{caption}[numbered] % For numbering figures
+
+
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+\usecolortheme{beaver}%this one also
+% \usecolortheme{beetle}
+% \usecolortheme{crane} % also use this one
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale} % Best one
+%\usecolortheme{wolverine} %use can use this also
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\setbeamercovered{transparent}
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{theorems}[numbered]
+\setbeamerfont{title}{size=\Large}%\miniscule,command,tiny, scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,HUGE
+\setbeamerfont{date}{size=\tiny}%{\fontsize{40}{48} \selectfont Text}
+
+\setbeamertemplate{itemize items}[ball] % if you want a ball
+\setbeamertemplate{itemize subitem}[circle] % if you wnat a circle
+\setbeamertemplate{itemize subsubitem}[triangle] % if you want a triangle
+
+
+%------------------customized frame----------------------------
+\newcounter{cont}
+
+\makeatletter
+%allowframebreaks numbering in the title
+\setbeamertemplate{frametitle continuation}{%
+   % \setcounter{cont}{\beamer@endpageofframe}%
+    %\addtocounter{cont}{1}%
+   % \addtocounter{cont}{-\beamer@startpageofframe}%
+   % (\insertcontinuationcount/\arabic{cont})%
+}
+\makeatother
+%-----------------------customized-----------------------------
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{Sparsest Cut Problem} % The short title appears at the bottom of every slide, the full title is only on the title page
+%\author[AKS]{Ajit Kumar Sahoo \texorpdfstring{\scriptsize Regd No: 16MCPC03}{}}
+\vspace{3cm}
+\author[Chappidi Venkata Vamsidhar Reddy, Harsh Vora]{\texorpdfstring{{\color{red} Chappidi Venkata Vamsidhar Reddy - 2021CS10557 \\Harsh Vora - 2021CS10548}}{Author}}
+
+\institute[IIT Delhi] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+
+% {\small Supervisor}\\
+\medskip
+{\large COL754 Project Presentation}\\
+%\begin{center}
+%\includegraphics[width=0.1\textwidth]{uoh.png}
+%\end{center}
+}
+\vspace{2cm}
+
+\date{} % Date, can be changed to a custom date
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+\begin{frame}
+  \frametitle{Contents}
+ % \tableofcontents[pausesections,shaded]
+ \tableofcontents
+\end{frame}
+% TABLE OF CONTENTS AT BEGIN OF EACH SECTION
+\AtBeginSection[]{
+\begin{frame}<beamer>
+\frametitle{Current Section}
+\tableofcontents[currentsection]
+\end{frame}}
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------------------
+%-------------------------------INTRODUCTION--------------------------------
+%-----------------------------------------------------------
+
+% \[
+% \rho(S) \equiv \frac{\sum \limits_{e \in \delta(S)} c_e}{\sum \limits_{i : |S \cap \{s_i, t_i\}| = 1} d_i}.
+% \]
+
+
+
+
+
+\section{Introduction: Sparsest Cut Problem} 
+\begin{frame}[allowframebreaks]
+\frametitle{Introduction - Sparsest Cut Problem}
+
+    Given
+    \begin{itemize}
+        \item graph $G = (V, E)$
+        \item costs $c_e$ on edges, and
+        \item demands $d_i$ on pairs of vertices $(s_i, t_i)$, $i = 1, \dots, k$
+    \end{itemize}
+    \vspace{0.8cm}
+    Find a cut $S \subseteq V$ that minimizes the ratio
+    \begin{center}
+        \[
+        \rho(S) \equiv \frac{\sum \limits_{e \in \delta(S)} c_e}{\sum \limits_{i : |S \cap \{s_i, t_i\}| = 1} d_i}.
+        \]
+    \end{center}
+\end{frame}
+
+\section{Exact Result}
+\subsection{Non-Linear Program}
+\begin{frame}[allowframebreaks]
+\frametitle{Non-Linear Program}
+\centering
+    \[
+    \text{minimize} \quad \frac{\sum \limits_{(i,j) \in E} c_{ij} \cdot (x_{i} \cdot (1 - x_{j}))}{\sum \limits_{i,j \in V} d_{ij} \cdot (x_{i} \cdot (1 - x_{j}))}
+    \]
+    subject to:
+    \[
+    x_{i} \in \{0, 1\}, \quad \forall i \in V.
+    \]
+\end{frame}
+
+\subsection{Solving the Non-Linear Program}
+\begin{frame}[allowframebreaks]
+    \frametitle{Solving the Non-Linear Program}
+    \begin{itemize}
+        \item $x_i = 1$ if $i \in S$, and $x_i = 0$ otherwise.
+        \item Solved using the Mixed Integer Non-Linear Programming (MINLP) solver \textbf{SCIP}.
+        \item Solution $S$ is the set of vertices with $x_i = 1$.
+    \end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------------------------------------------------------
+\section{Approximation Algorithm}
+\subsection{Integer Non-Linear Program}
+\begin{frame}[allowframebreaks]
+\frametitle{Integer Non-Linear Program}
+Modify the program to use
+\begin{itemize}
+    \item edge variables $x_{e}$: $x_{e} = 1$ if edge $e$ is in the cut, and $x_{e} = 0$ otherwise.
+    \item demand pair variables $y_{i}$: $y_{i} = 1$ if demand pair $i$ is separated by the cut, and $y_{i} = 0$ otherwise.
+    \item $\mathcal{P}_{i}$ is the set of all paths from $s_i$ to $t_i$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Integer Non-Linear Program}
+\begin{center}
+\[ \text{minimize} \quad \frac{\sum \limits_{e \in E} c_{e} \cdot x_{e}}{\sum \limits_{i=1}^{k} d_{i} \cdot y_{i}} \]
+subject to:
+\begin{flalign*}
+\sum \limits_{e \in P} x_{e} \geq y_{i}, \quad & \forall P \in \mathcal{P}_{i}, 1 \leq i \leq k,\\
+x_{e} \in \{0, 1\}, \quad & \forall e \in E,\\
+y_{i} \in \{0, 1\}, \quad & 1 \leq i \leq k. 
+\\
+\end{flalign*}
+\end{center}
+\end{frame}
+\subsection{Linear Program Relaxation(Exponential Number of Constraints)}
+\begin{frame}[allowframebreaks]
+\frametitle{Linear Program Relaxation(Exponential Number of Constraints)}
+The linear program is defined as follows:
+
+\[
+\text{minimize} \quad \sum \limits_{e \in E} c_e x_e
+\]
+
+\begin{flalign*}
+\text{subject to} \\
+\sum \limits_{i=1}^k d_i y_i = 1, & \\
+\sum \limits_{e \in P} x_e \geq y_i, \quad & \forall P \in \mathcal{P}_i, \; 1 \leq i \leq k, \\
+y_i \geq 0, \quad & 1 \leq i \leq k, \\
+x_e \geq 0, \quad & \forall e \in E. \\
+\end{flalign*}
+\end{frame}
+
+\subsection{Linear Program Relaxation(Polynomial Number of Constraints)}
+\begin{frame}[allowframebreaks]
+\frametitle{Linear Program Relaxation(Polynomial Number of Constraints)}
+We introduce new variables $d_{ui} \forall u \in V, 1 \le i \le k$. 
+\[\text{minimize} \quad \sum \limits_{e \in E} c_e x_e\]
+\[\text{subject to:}\]
+\begin{flalign*}
+    \sum \limits_{i=1}^k d_i \cdot y_i = 1, & \\
+    d_{u,i} - d_{v,i} \geq x_e, \quad & \forall e = (u, v) \in E, 1 \le i \le k, \\
+    d_{s_i,i} = 0, \quad & 1 \le i \le k, \\
+    d_{t_i,i} \ge y_i, \quad & 1 \le i \le k, \\
+    d_{u,i} \ge 0, \quad & \forall u \in V, 1 \le i \le k, \\
+    y_i \ge 0, \quad & 1 \le i \le k, \\
+    x_e \ge 0, \quad & \forall e \in E. \\
+\end{flalign*}
+\end{frame}
+
+\subsection{Fretchet Embeddings}
+\begin{frame}[allowframebreaks]
+\frametitle{Fretchet Embeddings}
+Given a metric space $(V, d)$ and $p$ subsets of vertices $A_1, \dots, A_p$, a Frechet embedding $f : V \to \mathbb{R}^p$ is defined by
+    \[
+    f(u) = \big(d(u, A_1), d(u, A_2), \dots, d(u, A_p)\big) \in \mathbb{R}^p
+    \]
+    for all $u \in V$.
+    
+\begin{itemize}
+    \item Generate $Qln(k)\log_{2}^{2k} ~ O(log^2(k))$ Frechet sets.
+    \item Compute Frechet embeddings.
+\end{itemize}
+\end{frame}
+
+\subsection{Sparset Cut Candidate Sets}
+\begin{frame}[allowframebreaks]
+\frametitle{Sparsest Cut Candidate Sets}
+Let $(V, d)$ be a Frechet-embeddable metric, and let $f : V \to \mathbb{R}^m$ be the associated embedding. Then there exist $\lambda_S \geq 0$ for all $S \subseteq V$ such that for all $u, v \in V$,
+\[
+\|f(u) - f(v)\|_1 = \sum_{S \subseteq V} \lambda_S \chi_{\delta(S)}(u, v).
+\]
+
+\begin{itemize}
+    \item Obtain the sets with non-zero $\lambda_S$.
+    \item Use these sets to compute the sparsest cut.
+\end{itemize}
+\end{frame}
+
+\subsection{Approximation Algorithm}
+\begin{frame}[allowframebreaks]
+\frametitle{Approximation Algorithm}
+\begin{itemize}
+    \item Generate $Qln(k)\log_{2}^{2k} ~ O(log^2(k))$ Frechet sets.
+    \item Solve the linear program relaxation.
+    \item Compute Frechet embeddings with obtained $x_e$ as edge lengths.
+    \item Compute the sparsest cut candidate sets.
+    \item Obtain an $O(\log k)$-approximation for the sparsest cut.
+    \item The algorithm runs in $O(n^2 \log^2 k)$ time.
+    
+\end{itemize}
+\end{frame}
+
+\section{Proofs}
+\subsection{Proof of Frechet Embeddings}
+\begin{frame}[allowframebreaks]
+\frametitle{Proof of Frechet Embeddings}
+We can generate at most mn subsets such that $\lambda_{s}$ is non-zero for these subsets.
+\begin{itemize}
+    \item To prove(considering 1-dimensional embedding): There exist at most n non-zero $\lambda_{s}$.
+    \item Construction: Sort all vertices according to their single-dimensional embedding: values $x_1 \leq x_2 \leq \dots \leq x_n$.
+    \item Let the order of sorted vertices be a permutation $\pi_1, \dots \pi_n$.
+    \item Consider the subsets $S_i = \{\pi_1, \dots, \pi_i\}$: $1 \leq i \leq n-1$.
+    \item $\lambda_{S_i} = x_{i+1} - x_i$.
+    \item For any $i<j$, \\$x_j - x_i = \sum \limits_{k=i}^{j-1} \lambda_{S_i}  = \sum \limits_{S \subseteq V} \lambda_S \cdot \chi_{\delta(S)}(i,j)$
+    \item Therefore, at most n of the $\lambda_{s}$ are non-zero.
+    \item For m dimensions, order the vertices according to the first dimension, then the second, and so on.
+    \item 
+    \begin{flalign*}
+        \|f(u) - f(v)\|_1 & = \sum_{i=1}^m \lvert x_u^i - x_v^i \rvert \\
+                          & = \sum_{i=1}^m \sum_{S \subseteq V} \lambda_S^i \chi_{\delta(S)}(u, v) \\
+                          & = \sum_{S \subseteq V} \lambda_S \chi_{\delta(S)}(u, v) \\
+    \end{flalign*}
+    \item The set of subsets can be computed in polynomial time.
+\end{itemize}
+\end{frame}
+
+
+\subsection{Proof of approximation}
+\begin{frame}[allowframebreaks]
+\frametitle{Proof of approximation}
+There is a randomized O(log n)-approximation algorithm for the sparsest cut problem.
+\begin{itemize}
+    \item $\rho(S*)$ is the minimum sparsity of computed candidate sets.
+    \item Now the task is to prove that this value is within $O(\log n)$ of the optimal sparsity.
+\end{itemize}
+\begin{flalign*}
+    \rho(S^*)   & = \min_{S : \lambda_S > 0} \frac{\sum_{e \in \delta(S)} c_e}{\sum_{i : |S \cap \{s_i, t_i\}| = 1} d_i} \\
+                & = \min_{S : \lambda_S > 0} \frac{\sum_{e \in E} c_e \cdot \chi_{\delta(S)}(e)}{\sum_{i} d_i \cdot \chi_{\delta(S)}(s_i, t_i)} \\
+                & \leq \frac{\sum_{S \subseteq V} \lambda_S \sum_{e \in E} c_e \cdot \chi_{\delta(S)}(e)}{\sum_{S \subseteq V} \lambda_S \sum_{i=1}^k d_i \cdot \chi_{\delta(S)}(s_i, t_i)} \\
+                & = \frac{\sum_{e \in E} c_e \sum_{S \subseteq V} \lambda_S \chi_{\delta(S)}(e)}{\sum_{i=1}^k d_i \sum_{S \subseteq V} \lambda_S \chi_{\delta(S)}(s_i, t_i)} \\
+                & = \frac{\sum_{e=(u,v) \in E} c_e \|f(u) - f(v)\|_1}{\sum_{i=1}^k d_i \|f(s_i) - f(t_i)\|_1} \\
+                & \leq \frac{O(\log^2 k) \cdot \sum_{e=(u,v) \in E} c_e \cdot d_x(u,v)}{\Omega(\log k) \cdot \sum_{i=1}^k d_i \cdot d_x(s_i, t_i)}, \\
+\end{flalign*}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Proof of approximation}
+\centering
+\begin{flalign*}
+\rho(S^*) &\leq O(\log k) \frac{\sum_{e=(u,v) \in E} c_e \cdot d_x(u, v)}{\sum_{i=1}^k d_i \cdot d_x(s_i, t_i)} \\
+&\leq O(\log k) \frac{\sum_{e \in E} c_e x_e}{\sum_{i=1}^k d_i y_i} \\
+&= O(\log k) \sum_{e \in E} c_e x_e \\
+&\leq O(\log k) \cdot \text{OPT}.
+\end{flalign*}
+\end{frame}
+
+
+\subsection{Proof of distortion}
+\begin{frame}[allowframebreaks]
+\frametitle{Proof of distortion}
+There is a randomized O(log n)-approximation algorithm for the sparsest cut problem.
+\begin{itemize}
+    \item To prove that $\sum_{e=(u,v) \in E} c_e \|f(u) - f(v)\|_1 \leq O(\log^2 k) \cdot \sum_{e=(u,v) \in E} c_e \cdot d_x(u,v)$.
+    \item Let $w$ be the point in the Frechet set A that is closest to $v$.
+\end{itemize}
+\begin{flalign*}
+    d(u, A) &\leq d_{uw} \leq d_{uv} + d_{vw} = d_{uv} + d(v, A), \\
+    d(v, A) &\leq d_{vw} + d(u, A), \\
+    |d(u, A) - d(v, A)| &\leq d_{uv}, \\
+    \|f(u) - f(v)\|_1 &= \sum_{j=1}^p |d(u, A_j) - d(v, A_j)| \leq p \cdot d_{uv}. \\
+    \end{flalign*}
+\end{frame}
+
+
+\section {Motivation}
+\begin{frame}[allowframebreaks]
+\frametitle{Lower bounds on circuit size}
+% Indivisible goods are difficult to deal with!\\
+% \vspace{1cm}
+\begin{itemize}
+\item Given: any polynomial in N variables and degree d.
+\item We want to represent this polynomial with an algebraic circuit of size s and depth $\Delta$.
+\item What is the minimum s for a given d that can represent all $P_{n,d}$
+\item 
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[height = 80 pt]{images/Lower_bounds.png}
+    %\caption{Caption}
+    % \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{The aim of the paper}
+% Indivisible goods are difficult to deal with!\\
+% \vspace{1cm}
+\begin{itemize}
+\item We prove a lower bound on s.
+\item There is a polynomial $P_{n,d}$ so that any circuit of depth $\Delta$ representing P has size > $N^{\Omega(d^{\epsilon(\Delta)})}$
+\item Choice for $P_{n,d}$ : $IMM_{n,d}$.
+
+\begin{figure}
+    \centering
+    \includegraphics[height = 80 pt]{images/Paper_bound.png}
+    %\caption{Caption}
+    % \label{fig:enter-label}
+\end{figure}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Iterated Matrix multiplication}
+% Indivisible goods are difficult to deal with!\\
+% \vspace{1cm}
+\begin{itemize}
+\item As the name suggests it involves calculating product of d matrices.
+\item To simplify the problem, IMM calculates the (1,1)th entry of the product.
+\item $IMM_{n,d}$ : Each matrix has dimension n $\times$ n.
+\item No. of variables: $n^2d$. Degree $d$.
+
+\begin{figure}
+    \centering
+    \includegraphics[height = 100 pt]{images/IMMND.png}
+    %\caption{Caption}
+    % \label{fig:enter-label}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{$IMM_{n,d}$ is set-multilinear}
+% Indivisible goods are difficult to deal with!\\
+% \vspace{1cm}
+\begin{itemize}
+\item Partition the variables into d groups.
+\item The entries of every matrix forms a group
+\item Each monomial in output is a degree d term with one variable from each matrix.
+\end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[height = 150 pt]{images/Set-mult.png}
+    %\caption{Caption}
+    % \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\section{Theorems, Corollaries, and Lemmas}
+\begin{frame}[allowframebreaks]
+\frametitle{Hardness Escalation}
+% Indivisible goods are difficult to deal with!\\
+\begin{multicols}{2}[]
+% \vspace{1cm}
+\begin{itemize}
+\item Lower bounds for (restricted) set-multilinear polynomials  \\$\implies$ lower bounds for general algebraic polynomials.\\
+\item Homog./set-mult. poly. P of degree d = $O(log N / log log N)$,\\ P has a formula size poly(N) \textbf{iff} if P has a homog./set-mult. formula size poly(N).\footnote{Raz, R. Tensor-rank and lower bounds for arithmetic formulas.}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height = 205pt]{images/hard_esc.png}
+    % \caption{Types of valuation functions}
+    % 
+\end{figure}
+\end{multicols}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Depth 3 Circuit $\rightarrow$ Depth 5 Circuit}
+% Indivisible goods are difficult to deal with!\\
+% \begin{multicols}{2}[]
+% \vspace{1cm}
+% \begin{exampleblock}{Lemma 1}
+\begin{exampleblock}{Lemma 6}\\
+    Let $s$, $N$, and $d$ be growing parameters. Fix any $\Sigma\Pi\Sigma$ circuit $F$ of size at most $s$ computing a homogeneous polynomial $P(x_1, \dots, x_N)$ of degree $d$. Then, $P$ can also be computed by a homogeneous $\Sigma\Pi\Sigma\Pi\Sigma$ circuit of size at most $poly(s)exp(O(d^{\frac{1}{2}}))$.
+\end{exampleblock}
+
+% \end{multicols}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Depth 3 Circuit $\rightarrow$ Depth 5 Circuit}
+% Indivisible goods are difficult to deal with!\\
+\begin{multicols}{2}[]
+\vspace{1cm}
+% \begin{exampleblock}{Lemma 1}
+\begin{itemize}
+\item \textit{The underlying field should have characteristic 0 to factorize.}
+
+\item $E_s^d$ can be written as a $\Sigma\Pi\Sigma\Pi$ circuit\footnote{Shpilka and Wigderson}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height = 190pt]{images/lemma6.png}
+    % \caption{Types of valuation functions}
+    % 
+\end{figure}
+
+
+\end{multicols}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+\frametitle{Homogenous Circuit $\rightarrow$ Set-multilinear Circuit}
+% Indivisible goods are difficult to deal with!\\
+% \begin{multicols}{2}[]
+% \vspace{1cm}
+% \begin{exampleblock}{Lemma 1}
+\begin{exampleblock}{Lemma 7}\\
+    Let $\Delta$ be an odd integer. Let $s$, $N$, $d$ be growing parameters with $s \geq N$. If $C$ is a homogeneous circuit of size at most $s$ and depth at most $\Delta$ computing a set-multilinear polynomial $P$ over the sets of variables $(X_1, \dots, X_d)$ (with $|X_i| \leq N$), then there is a set-multilinear circuit $C'$ of size at most $(d!)s$ and depth at most $\Delta$ computing $P$.
+\end{exampleblock}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[height =200pt]{images/lemma6.png}
+%     % \caption{Types of valuation functions}
+%     % 
+% \end{figure}
+% \end{multicols}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Homogenous Circuit $\rightarrow$ Set-multilinear Circuit}
+Transform:
+\vspace{0.6cm}
+\begin{itemize}
+\item  Replace every node $\alpha$ by a set of $^dC_{d_\alpha}$ nodes.
+\vspace{0.6cm}
+\item This can mess up the next level, so iteratively repeat till we reach the root (which is always set-multilinear)
+\vspace{0.6cm}
+\item $d$: degree of polynomial, $d_\alpha$: degree of node
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height = 120pt]{images/Converting_to_sm.png}
+    % \caption{Types of valuation functions}
+    % 
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Set-Multilinear Circuits, Homogenous and depth-5 circuits}
+% \begin{multicols}{2}[]
+% Indivisible goods are difficult to deal with!\\
+% \vspace{1cm}
+\begin{itemize}
+    \item Therefore, a depth-3 circuit can be transformed into a set-multilinear depth-5 circuit with only a polynomial size blow-up.
+    \item The authors prove a non-fixed parameter tractable (non-FPT) lower bound for set-multilinear circuits of any constant depth. \\
+    % This means that no matter how you restrict the circuit`’s depth or structure, it will still require superpolynomial size to compute certain polynomials. This result generalizes known lower bounds and applies to iterated matrix multiplication, providing evidence that even circuits with restricted gates and structure must be large
+
+\end{itemize}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[height = 205pt]{images/alg_circuits.png}
+%     % \caption{Types of valuation functions}
+%     % 
+% \end{figure}
+% \end{multicols}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Bounds for set-multilinear circuits $IMM_{n,d}$}
+% Indivisible goods are difficult to deal with!\\
+% \begin{multicols}{2}[]
+% \vspace{1cm}
+% \begin{exampleblock}{Lemma 1}
+\begin{exampleblock}{Lemma 8}\\
+Let $n$, $d$ be integers with $d \leq (\log n)/100$. Any set-multilinear circuit $C$ of depth 5 computing $IMM_{n,d}$ has size at least $n^{\Omega(\sqrt{d})}$.
+\end{exampleblock}
+\vspace{1cm}
+This gives a lower bound on the size of set multilinear circuit for  $IMM_{n,d}$. Finally by using the hardness escalation idea, we get a lower bound on size of any general circuit computing $IMM_{n,d}$.
+% \end{multicols}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Proof outline}
+% \begin{multicols}{2}[]
+% % Indivisible goods are difficult to deal with!\\
+% \vspace{1cm}
+\begin{itemize}
+    \item  We establish a complexity measure to measure how 'lopsided' a polynomial is. 
+    \item A set multilinear polynomial is more lopsided if one of the partitions has much larger size than another. 
+    \item We show that if a set-multilinear circuit of size s and depth $\Delta$ computes $IMM_{n,d}$, it can not be too lopsided. 
+    \item This gives us a lower bound on complexity measure.
+    
+    
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height = 55pt]{images/Complexity_measure.png}
+    % \caption{Types of valuation functions}
+    % 
+\end{figure}
+% \end{multicols}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Upper bound on complexity measure}
+% \begin{multicols}{2}[]
+% Indivisible goods are difficult to deal with!\\
+% \vspace{1cm}
+\begin{itemize}
+    \item Using the subadditivity and the multiplicativity of the chosen measure, we get some crude upper bound on the complexity measure.
+    \item Ensuring that the upper bound $\geq$ lower bound gives a lower bound on the size of the circuits.
+    
+    
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height = 15pt]{images/eq1.png}
+    \includegraphics[height = 25pt]{images/eq2.png}
+    % \caption{Types of valuation functions}
+    % 
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height = 35pt]{images/eq3.png}
+    % \caption{Types of valuation functions}
+    % 
+\end{figure}
+% \end{multicols}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Extension}
+% \begin{multicols}{2}[]
+% Indivisible goods are difficult to deal with!\\
+% \vspace{1cm}
+\begin{itemize}
+    \item Use a weighted version of the elementary symmetric polynomial to extend lemma 6 for arbitrary depth $\Delta$.
+    \item Give an inductive argument in the proof of upper limit on complexity measure to get a lower bound on size $n^{\frac{d^{\frac{1}{2^{\Gamma}-1}}}{\Gamma}}$.
+    
+    
+\end{itemize}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[height = 205pt]{images/alg_circuits.png}
+%     % \caption{Types of valuation functions}
+%     % 
+% \end{figure}
+% \end{multicols}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Polynomial Identity Testing}
+\begin{itemize}
+    % \item Every agent prefers its own bundle to the bundle alloted to any other agent
+    \item PIT: whether algebraic circuit computes the zero polynomial. 
+    \item Paper's bound leads to the first deterministic sub-exponential time algorithm for constant-depth circuits. 
+    \item The connection between lower bounds and derandomization (removing randomness from algorithms) is key here: if a problem is hard (large lower bounds), it implies a deterministic solution for PIT exists.
+\end{itemize}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width = 130px]{images/alg_circuits.png}
+%     \caption{Envy freeness}
+
+% \LARGE{Unfortunately, EF is not always possible}
+    
+% \end{figure}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Conclusion}
+\begin{itemize}
+    % \item Every agent prefers its own bundle to the bundle alloted to any other agent
+    \item We find superpolynomial lower bounds for $IMM_{n,d}$
+    \item Then using hardness escalation we find a lower bound for general circuits of depth 3.
+    \item Extend the argument to general depth algebraic circuits.
+    \item Therefore we find superpolynomial lower bounds for algebraic circuits.
+\end{itemize}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width = 130px]{images/alg_circuits.png}
+%     \caption{Envy freeness}
+
+% \LARGE{Unfortunately, EF is not always possible}
+    
+% \end{figure}
+\end{frame}
+
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
